@@ -1,0 +1,90 @@
+{
+    "name": "Scene",
+    "camera_datas": [
+        {
+            "name": "CameraData",
+            "type": "perspective",
+            "near_plane": 0.1,
+            "far_plane": 100.0,
+            "fov": 0.85,
+            "render_path": "simple_path/simple_path",
+            "frustum_culling": true
+        }
+    ],
+    "camera_ref": "Camera",
+    "lamp_datas": [
+        {
+            "name": "LampData",
+            "type": "sun",
+            "color": [1.0, 1.0, 1.0],
+            "strength": 1.0
+        }
+    ],
+    "material_datas": [
+        {
+            "contexts": [
+                {
+                    "bind_constants": [
+                        {
+                            "vec3": [0.8, 0.1, 0.1],
+                            "name": "color"
+                        },
+                        {
+                            "float": 0.5,
+                            "name": "norm"
+                        },
+                        {
+                            "float": 0.0,
+                            "name": "twist"
+                        }
+                    ],
+                    "name": "mesh"
+                }
+            ],
+            "name": "Material",
+            "shader": "Material_data/Material_data"
+        }
+    ],
+    "objects": [
+        {
+            "name": "Cube",
+            "type": "mesh_object",
+            "data_ref": "mesh_Cube/Cube",
+            "material_refs": ["Material"],
+            "transform": {
+                "values": [
+                    1.0,0.0,0.0,0.0,
+                    0.0,1.0,0.0,0.0,
+                    0.0,0.0,1.0,0.0,
+                    0.0,0.0,0.0,1.0
+                ]
+            }
+        },
+        {
+            "name": "Lamp",
+            "type": "lamp_object",
+            "data_ref": "LampData",
+            "transform": {
+                "values": [
+                    -0.29086464643478394,-0.7711008191108704,0.5663931965827942,11.0,
+                    0.9551711678504944,-0.1998833566904068,0.21839119493961334,4.0,
+                    -0.05518905818462372,0.6045247316360474,0.7946722507476807,16.0,
+                    0.0,0.0,0.0,1.0
+                ]
+            }
+        },
+        {
+            "name": "Camera",
+            "type": "camera_object",
+            "data_ref": "CameraData",
+            "transform": {
+                "values": [
+                    0.6859206557273865,-0.32401347160339355,0.6515582203865051,7.481131553649902,
+                    0.7276763319969177,0.305420845746994,-0.6141703724861145,-6.5076398849487305,
+                    0.0,0.8953956365585327,0.44527140259742737,5.34366512298584,
+                    0.0,0.0,0.0,1.0
+                ]
+            }
+        }
+    ]
+}
