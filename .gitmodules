@@ -3,10 +3,10 @@
 	url = https://github.com/armory3d/iron
 [submodule "edit/Libraries/haxeui-core"]
 	path = edit/Libraries/haxeui-core
-	url = https://github.com/armory3d/haxeui-core
+	url = https://github.com/haxeui/haxeui-core
 [submodule "edit/Libraries/haxeui-kha"]
 	path = edit/Libraries/haxeui-kha
-	url = https://github.com/armory3d/haxeui-kha
+	url = https://github.com/haxeui/haxeui-kha
 [submodule "edit/Libraries/hscript"]
 	path = edit/Libraries/hscript
 	url = https://github.com/armory3d/hscript
