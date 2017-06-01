@@ -2,16 +2,6 @@
     "shader_datas": [
         {
             "name": "Material_data",
-            "vertex_structure": [
-                {
-                    "name": "pos",
-                    "size": 3
-                },
-                {
-                    "name": "nor",
-                    "size": 3
-                }
-            ],
             "contexts": [
                 {
                     "name": "mesh",
@@ -44,6 +34,16 @@
                             "link": "_lampDirection",
                             "name": "lightDir",
                             "type": "vec3"
+                        }
+                    ],
+                    "vertex_structure": [
+                        {
+                            "name": "pos",
+                            "size": 3
+                        },
+                        {
+                            "name": "nor",
+                            "size": 3
                         }
                     ]
                 }
