@@ -27,6 +27,14 @@ class Main {
 	}
 
 	static function ready() {
+		var path = new iron.RenderPath();
+		path.commands = function() {
+			path.setTarget("");
+			path.clearTarget(0xff222222, 1.0);
+			path.drawMeshes("mesh");
+		};
+		iron.RenderPath.setActive(path);
+
         iron.Scene.setActive("Scene", function(o:iron.object.Object) {
 
 			var cube:iron.object.MeshObject = cast o.getChild("Cube");

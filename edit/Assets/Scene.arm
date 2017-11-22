@@ -7,7 +7,6 @@
             "near_plane": 0.1,
             "far_plane": 100.0,
             "fov": 0.85,
-            "render_path": "simple_path/simple_path",
             "frustum_culling": true
         }
     ],
