@@ -13,10 +13,10 @@ class Main {
 		var path = new iron.RenderPath();
 		path.commands = function() {
 			path.setTarget("");
-			path.clearTarget(0xff222222, 1.0);
+			path.clearTarget(0xff6495ED, 1.0);
 			path.drawMeshes("mesh");
 		};
 		iron.RenderPath.setActive(path);
-		iron.Scene.setActive("Scene");
+		iron.Scene.setActive("Scene.json");
 	}
 }

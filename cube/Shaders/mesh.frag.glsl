@@ -10,11 +10,10 @@ uniform vec3 color;
 
 void main() {
 	vec3 n = normalize(wnormal);
-	vec3 l = lightDir;
-	float dotNL = dot(n, l);
+	float dotNL = max(0.0, dot(n, lightDir));
 	
-	vec3 direct = color * max(0.0, dotNL);
-	vec3 indirect = vec3(0.3, 0.1, 0.1);
+	vec3 direct = color * max(0.0, dotNL) * lightColor;
+	vec3 indirect = vec3(0.4, 0.4, 0.4);
 	
-	fragColor = vec4(direct * lightColor + indirect, 1.0);
+	fragColor = vec4(direct + indirect, 1.0);
 }

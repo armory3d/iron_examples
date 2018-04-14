@@ -1,13 +1,11 @@
 {
-    "name": "Scene",
+    "name": "Scene.json",
     "camera_datas": [
         {
             "name": "CameraData",
-            "type": "perspective",
             "near_plane": 0.1,
             "far_plane": 100.0,
-            "fov": 0.85,
-            "frustum_culling": true
+            "fov": 0.85
         }
     ],
     "camera_ref": "Camera",
@@ -28,7 +26,7 @@
                 {
                     "bind_constants": [
                         {
-                            "vec3": [0.8, 0.1, 0.1],
+                            "vec3": [0.8, 0.8, 0.8],
                             "name": "color"
                         }
                     ],
@@ -36,14 +34,14 @@
                 }
             ],
             "name": "Material",
-            "shader": "Material_data/Material_data"
+            "shader": "Material_data.json/Material_data"
         }
     ],
     "objects": [
         {
             "name": "Cube",
             "type": "mesh_object",
-            "data_ref": "mesh_Cube/Cube",
+            "data_ref": "mesh_Cube.json/Cube",
             "material_refs": ["Material"],
             "transform": {
                 "values": [

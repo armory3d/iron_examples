@@ -18,7 +18,7 @@
                         {
                             "link": "_normalMatrix",
                             "name": "N",
-                            "type": "mat4"
+                            "type": "mat3"
                         },
                         {
                             "link": "_worldViewProjectionMatrix",
