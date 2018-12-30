@@ -12,7 +12,7 @@ class Main {
 	static var raw:TSceneFormat;
 
 	public static function main() {
-		kha.System.init({title: "Empty", width: 960, height: 540, samplesPerPixel: 4}, function() {
+		kha.System.start({ title: "Empty", width: 1280, height: 720 }, function(window:kha.Window) {
 			App.init(ready);
 		});
 	}
@@ -21,7 +21,7 @@ class Main {
 		var path = new RenderPath();
 		path.commands = function() {
 			path.setTarget("");
-			path.clearTarget(0xff6495ED, 1.0);
+			path.clearTarget(0xff000000, 1.0);
 			path.drawMeshes("mesh");
 		};
 		RenderPath.setActive(path);
@@ -38,28 +38,23 @@ class Main {
 	}
 
 	static function sceneReady(scene:Object) {
-		var vb = new kha.arrays.Float32Array(9);
-		vb[0] = -1; vb[1] = -1; vb[2] = 0;
-		vb[3] =  1; vb[4] = -1; vb[5] = 0;
-		vb[6] =  0; vb[7] =  1; vb[8] = 0;
+		var m = Std.int(32767 / 2);
+		var vb = new kha.arrays.Int16Array(12);
+		vb[0] = -1 * m; vb[1] = -1 * m; vb[2 ] = 0; vb[3 ] = 0;
+		vb[4] =  1 * m; vb[5] = -1 * m; vb[6 ] = 0; vb[7 ] = 0;
+		vb[8] =  0    ; vb[9] =  1 * m; vb[10] = 0; vb[11] = 0;
 		var ib = new kha.arrays.Uint32Array(3);
 		ib[0] = 0; ib[1] = 1; ib[2] = 2;
 
 		var mesh:TMeshData = {
 			name: "TriangleMesh",
 			vertex_arrays: [
-				{
-					attrib: "pos",
-					size: 3,
-					values: vb
-				}
+				{ attrib: "pos", values: vb }
 			],
 			index_arrays: [
-				{
-					material: 0,
-					values: ib
-				}
-			]
+				{ material: 0, values: ib }
+			],
+			scale_pos: 1.0
 		}
 		raw.mesh_datas.push(mesh);
 
@@ -78,8 +73,8 @@ class Main {
 						constants: [
 							{ name: "color", type: "vec3" }
 						],
-						vertex_structure: [
-							{ name: "pos", size: 3 }
+						vertex_elements: [
+							{ name: "pos", data: "short4norm" }
 						]
 					}
 				]
@@ -87,7 +82,7 @@ class Main {
 			raw.shader_datas.push(sh);
 
 			var col = new kha.arrays.Float32Array(3);
-			col[0] = 1.0; col[1] = 0.0; col[2] = 0.0;
+			col[0] = 1.0; col[1] = 1.0; col[2] = 0.0;
 
 			var md:TMaterialData = {
 				name: "MyMaterial",
