@@ -16,6 +16,7 @@ class Main {
 		// Init and create window
 		kha.System.start({ title: "Empty", width: 1280, height: 720 }, function(window:kha.Window) {
 			App.init(ready);
+			App.notifyOnUpdate(update);
 		});
 	}
 
@@ -144,5 +145,12 @@ class Main {
 		Scene.active.parseObject(raw.name, tri.name, null, function(o:Object) {
 			trace('Triangle ready');
 		});
+	}
+	static function update(){
+		var z = new Vec4(0.0, 0.0, 1.0);
+		var suzanne = Scene.active.getChild("Suzanne");
+
+		//Rotate Suzanne on z axis with 0.02 speed
+		suzanne.transform.rotate(z, 0.02);
 	}
 }
