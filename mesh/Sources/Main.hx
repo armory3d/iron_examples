@@ -15,6 +15,7 @@ class Main {
 	public static function main() {
 		kha.System.start({title: "Empty", width: 1280, height: 720}, function(window:kha.Window) {
 			App.init(ready);
+			App.notifyOnUpdate(update);
 		});
 	}
 
@@ -128,11 +129,12 @@ class Main {
 		// Scene.active.parseObject(raw.name, o.name, null, function(o:Object) {
 		// 	trace('Monkey ready');
 		// });
-
-		// Rotate suzanne
+	}
+	static function update(){
+		var z = new Vec4(0.0, 0.0, 1.0);
 		var suzanne = Scene.active.getChild("Suzanne");
-		App.notifyOnUpdate(function() {
-			suzanne.transform.rotate(new Vec4(0, 0, 1), 0.02);
-		});
+		
+		//Rotate Suzanne on z axis with 0.02 speed
+		suzanne.transform.rotate(z, 0.02);
 	}
 }
