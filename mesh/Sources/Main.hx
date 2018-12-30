@@ -6,6 +6,7 @@ import iron.RenderPath;
 import iron.data.*;
 import iron.data.SceneFormat;
 import iron.object.Object;
+import iron.math.Vec4;
 
 class Main {
 
@@ -31,13 +32,23 @@ class Main {
 			shader_datas: [],
 			material_datas: [],
 			mesh_datas: [],
+			camera_datas: [],
+			camera_ref: "Camera",
 			objects: []
-		}
+		};
 		Data.cachedSceneRaws.set(raw.name, raw);
 		Scene.create(raw, sceneReady);
 	}
 
 	static function sceneReady(scene:Object) {
+
+		var cd:TCameraData = {
+			name: "MyCamera",
+			near_plane: 0.1,
+			far_plane: 100.0,
+			fov: 0.85
+		};
+		raw.camera_datas.push(cd);
 		
 		var sh:TShaderData = {
 			name: "MyShader",
@@ -50,14 +61,15 @@ class Main {
 					cull_mode: "clockwise",
 					depth_write: true,
 					constants: [
-						{ name: "color", type: "vec3" }
+						{ name: "color", type: "vec3" },
+						{ name: "WVP", type: "mat4", link: "_worldViewProjectionMatrix" }
 					],
 					vertex_elements: [
 						{ name: "pos", data: "short4norm" }
 					]
 				}
 			]
-		}
+		};
 		raw.shader_datas.push(sh);
 
 		var col = new kha.arrays.Float32Array(3);
@@ -74,7 +86,7 @@ class Main {
 					]
 				}
 			]
-		}
+		};
 		raw.material_datas.push(md);
 
 		MaterialData.parse(raw.name, md.name, function(res:MaterialData) {
@@ -82,18 +94,45 @@ class Main {
 		});
 	}
 
-	static function dataReady() {	
+	static function dataReady() {
+		// Camera object
+		var co:TObj = {
+			name: "Camera",
+			type: "camera_object",
+			data_ref: "MyCamera",
+			transform: null
+		};
+		raw.objects.push(co);
+
+		// Mesh object
 		var o:TObj = {
 			name: "Suzanne",
 			type: "mesh_object",
 			data_ref: "Suzanne.arm/Suzanne",
 			material_refs: ["MyMaterial"],
 			transform: null
-		}
+		};
 		raw.objects.push(o);
 
-		Scene.active.parseObject(raw.name, o.name, null, function(o:Object) {
+		// Instantiate scene
+		Scene.create(raw, function(o:Object) {
 			trace('Monkey ready');
+			// Set camera
+			var t = Scene.active.camera.transform;
+			t.loc.set(0, -3, 0);
+			t.rot.fromTo(new Vec4(0, 0, 1), new Vec4(0, -1, 0));
+			t.buildMatrix();
+		});
+
+		// Instantiate single object
+		// Scene.active.parseObject(raw.name, o.name, null, function(o:Object) {
+		// 	trace('Monkey ready');
+		// });
+
+		// Rotate suzanne
+		var suzanne = Scene.active.getChild("Suzanne");
+		App.notifyOnUpdate(function() {
+			suzanne.transform.rotate(new Vec4(0, 0, 1), 0.02);
 		});
 	}
 }

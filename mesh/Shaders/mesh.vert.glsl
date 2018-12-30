@@ -2,6 +2,8 @@
 
 in vec4 pos;
 
+uniform mat4 WVP;
+
 void main() {
-	gl_Position = vec4(pos.xyz, 1.0);
+	gl_Position = WVP * vec4(pos.xyz, 1.0);
 }

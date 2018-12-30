@@ -42,7 +42,7 @@ class Main {
 			material_datas: [],
 			mesh_datas: [],
 			objects: []
-		}
+		};
 		Data.cachedSceneRaws.set(raw.name, raw);
 		Scene.create(raw, sceneReady);
 	}
@@ -79,7 +79,7 @@ class Main {
 			],
 			// Apply scale to world matrix when drawing this mesh
 			scale_pos: 1.0
-		}
+		};
 		raw.mesh_datas.push(mesh);
 
 		MeshData.parse(raw.name, mesh.name, function(res:MeshData) {
@@ -103,7 +103,7 @@ class Main {
 						]
 					}
 				]
-			}
+			};
 			raw.shader_datas.push(sh);
 
 			// Pass as color uniform to the material
@@ -121,7 +121,7 @@ class Main {
 						]
 					}
 				]
-			}
+			};
 			raw.material_datas.push(md);
 
 			MaterialData.parse(raw.name, md.name, function(res:MaterialData) {
@@ -138,7 +138,7 @@ class Main {
 			data_ref: "TriangleMesh",
 			material_refs: ["MyMaterial"],
 			transform: null
-		}
+		};
 		raw.objects.push(tri);
 
 		Scene.active.parseObject(raw.name, tri.name, null, function(o:Object) {
