@@ -12,7 +12,7 @@ class Main {
 	static var raw:TSceneFormat;
 
 	public static function main() {
-		kha.System.init({title: "Empty", width: 960, height: 540, samplesPerPixel: 4}, function() {
+		kha.System.start({title: "Empty", width: 1280, height: 720}, function(window:kha.Window) {
 			App.init(ready);
 		});
 	}
@@ -52,8 +52,8 @@ class Main {
 					constants: [
 						{ name: "color", type: "vec3" }
 					],
-					vertex_structure: [
-						{ name: "pos", size: 3 }
+					vertex_elements: [
+						{ name: "pos", data: "short4norm" }
 					]
 				}
 			]
