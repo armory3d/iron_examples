@@ -37,10 +37,6 @@ class Main {
 			objects: []
 		};
 		Data.cachedSceneRaws.set(raw.name, raw);
-		Scene.create(raw, sceneReady);
-	}
-
-	static function sceneReady(scene:Object) {
 
 		var cd:TCameraData = {
 			name: "MyCamera",
@@ -117,18 +113,22 @@ class Main {
 		// Instantiate scene
 		Scene.create(raw, function(o:Object) {
 			trace('Monkey ready');
-			// Set camera
-			var t = Scene.active.camera.transform;
-			t.loc.set(0, -3, 0);
-			t.rot.fromTo(new Vec4(0, 0, 1), new Vec4(0, -1, 0));
-			t.buildMatrix();
+			sceneReady();
 		});
 
 		// Instantiate single object
 		// Scene.active.parseObject(raw.name, o.name, null, function(o:Object) {
 		// 	trace('Monkey ready');
 		// });
+	}
 
+	static function sceneReady() {
+		// Set camera
+		var t = Scene.active.camera.transform;
+		t.loc.set(0, -3, 0);
+		t.rot.fromTo(new Vec4(0, 0, 1), new Vec4(0, -1, 0));
+		t.buildMatrix();
+			
 		// Rotate suzanne
 		var suzanne = Scene.active.getChild("Suzanne");
 		App.notifyOnUpdate(function() {
