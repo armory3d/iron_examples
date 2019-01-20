@@ -1,0 +1,101 @@
+{
+    "camera_datas": [
+        {
+            "clear_color": [
+                0.05087608844041824,
+                0.05087608844041824,
+                0.05087608844041824,
+                1.0
+            ],
+            "far_plane": 100.00005954507563,
+            "fov": 0.39959649897354615,
+            "frustum_culling": true,
+            "name": "Camera",
+            "near_plane": 0.1
+        }
+    ],
+    "camera_ref": "Camera",
+    "material_datas": [
+        {
+            "contexts": [
+                {
+                    "bind_constants": [
+                        {
+                            "name": "color",
+                            "vec3": [1.0, 0.0, 0.0]
+                        }
+                    ],
+                    "bind_textures": [],
+                    "name": "mesh"
+                }
+            ],
+            "name": "Material",
+            "shader": "Material_data.json/Material_data"
+        }
+    ],
+    "mesh_datas": [],
+    "name": "Scene.json",
+    "objects": [
+        {
+            "data_ref": "mesh_Cube.json/Cube",
+            "dimensions": [
+                2.0,
+                2.0,
+                2.0
+            ],
+            "material_refs": [
+                "Material"
+            ],
+            "mobile": false,
+            "name": "Cube",
+            "traits": [],
+            "transform": {
+                "values": [
+                    1.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0
+                ]
+            },
+            "type": "mesh_object"
+        },
+        {
+            "data_ref": "Camera",
+            "name": "Camera",
+            "traits": [],
+            "transform": {
+                "values": [
+                    0.6859206557273865,
+                    -0.32401347160339355,
+                    0.6515582203865051,
+                    7.358891487121582,
+                    0.7276763319969177,
+                    0.305420845746994,
+                    -0.6141703724861145,
+                    -6.925790786743164,
+                    0.0,
+                    0.8953956365585327,
+                    0.44527140259742737,
+                    4.958309173583984,
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0
+                ]
+            },
+            "type": "camera_object"
+        }
+    ]
+}

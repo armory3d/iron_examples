@@ -1,0 +1,35 @@
+{
+    "shader_datas": [
+        {
+            "contexts": [
+                {
+                    "compare_mode": "less",
+                    "constants": [
+                        {
+                            "link": "_worldViewProjectionMatrix",
+                            "name": "WVP",
+                            "type": "mat4"
+                        },
+                        {
+                            "name": "color",
+                            "type": "vec3"
+                        }
+                    ],
+                    "cull_mode": "clockwise",
+                    "depth_write": true,
+                    "fragment_shader": "mesh.frag",
+                    "name": "mesh",
+                    "texture_units": [],
+                    "vertex_elements": [
+                        {
+                            "data": "short4norm",
+                            "name": "pos"
+                        }
+                    ],
+                    "vertex_shader": "mesh.vert"
+                }
+            ],
+            "name": "Material_data"
+        }
+    ]
+}
