@@ -104,7 +104,7 @@ class Main {
 		var o:TObj = {
 			name: "Cube",
 			type: "mesh_object",
-			data_ref: "Cube.arm/Cube",
+			data_ref: "cube.arm/Cube",
 			material_refs: ["MyMaterial"],
 			transform: null
 		};
