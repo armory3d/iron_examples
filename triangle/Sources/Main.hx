@@ -61,7 +61,7 @@ class Main {
 		vb[0] = -half; vb[1] = -half; vb[2 ] = 0; vb[3 ] = 0; // Vertex 0 xyzw
 		vb[4] =  half; vb[5] = -half; vb[6 ] = 0; vb[7 ] = 0; // Vertex 1 xyzw
 		vb[8] =  0;    vb[9] =  half; vb[10] = 0; vb[11] = 0; // Vertex 2 xyzw
-		
+
 		// Build triangle index buffer
 		var ib = new kha.arrays.Uint32Array(3);
 		ib[0] = 0; // Point to vertex 0
@@ -72,7 +72,7 @@ class Main {
 		var mesh:TMeshData = {
 			name: "TriangleMesh",
 			vertex_arrays: [
-				{ attrib: "pos", values: vb }
+				{ attrib: "pos", values: vb, data: "short4norm" }
 			],
 			index_arrays: [
 				{ material: 0, values: ib }

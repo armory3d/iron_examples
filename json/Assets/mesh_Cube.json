@@ -49,6 +49,7 @@
             "vertex_arrays": [
                 {
                     "attrib": "pos",
+                    "data": "short4norm",
                     "values": [
                         32767,
                         32767,
@@ -150,6 +151,7 @@
                 },
                 {
                     "attrib": "nor",
+                    "data": "short2norm",
                     "values": [
                         0,
                         0,
