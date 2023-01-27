@@ -11,3 +11,5 @@ cd iron_examples
 cd triangle
 ../armorcore/Kinc/make --from ../armorcore --run
 ```
+
+![](tri.png)
