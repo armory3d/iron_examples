@@ -1,3 +1,6 @@
 [submodule "iron"]
 	path = iron
 	url = https://github.com/armory3d/iron
+[submodule "armorcore"]
+	path = armorcore
+	url = https://github.com/armory3d/armorcore
