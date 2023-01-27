@@ -10,11 +10,14 @@ import iron.object.Object;
 class Main {
 
 	// Raw data used to create the scene
-	static var raw:TSceneFormat;
+	static var raw: TSceneFormat;
 
 	public static function main() {
+
+		ShaderData.shaderPath = ""; // Use arm_data_dir
+
 		// Init and create window
-		kha.System.start({ title: "Empty", width: 1280, height: 720 }, function(window:kha.Window) {
+		kha.System.start({ title: "Empty", width: 1280, height: 720 }, function(window: kha.Window) {
 			App.init(ready);
 		});
 	}
@@ -27,7 +30,7 @@ class Main {
 			// Draw to framebuffer
 			path.setTarget("");
 			// Clear color and depth
-			path.clearTarget(0xff000000, 1.0);
+			path.clearTarget(0xff6495ed, 1.0);
 			// Loop through visible meshes and draw "mesh" context
 			// "mesh" context is retrieved from materials attached to mesh
 			// If material with such context exists, mesh is drawn using this material
@@ -47,7 +50,7 @@ class Main {
 		Scene.create(raw, sceneReady);
 	}
 
-	static function sceneReady(scene:Object) {
+	static function sceneReady(scene: Object) {
 		// Create triangle mesh
 
 		// Build vertex buffer
@@ -69,7 +72,7 @@ class Main {
 		ib[2] = 2; // Point to vertex 2
 
 		// Raw data used to create the mesh
-		var mesh:TMeshData = {
+		var mesh: TMeshData = {
 			name: "TriangleMesh",
 			vertex_arrays: [
 				{ attrib: "pos", values: vb, data: "short4norm" }
@@ -82,10 +85,10 @@ class Main {
 		};
 		raw.mesh_datas.push(mesh);
 
-		MeshData.parse(raw.name, mesh.name, function(res:MeshData) {
+		MeshData.parse(raw.name, mesh.name, function(res: MeshData) {
 
 			// Create shader for our triangle mesh
-			var sh:TShaderData = {
+			var sh: TShaderData = {
 				name: "MyShader",
 				contexts: [
 					{
@@ -110,7 +113,7 @@ class Main {
 			var col = new kha.arrays.Float32Array(3);
 			col[0] = 1.0; col[1] = 1.0; col[2] = 0.0;
 
-			var md:TMaterialData = {
+			var md: TMaterialData = {
 				name: "MyMaterial",
 				shader: "MyShader",
 				contexts: [
@@ -124,7 +127,7 @@ class Main {
 			};
 			raw.material_datas.push(md);
 
-			MaterialData.parse(raw.name, md.name, function(res:MaterialData) {
+			MaterialData.parse(raw.name, md.name, function(res: MaterialData) {
 				dataReady();
 			});
 		});
@@ -132,7 +135,7 @@ class Main {
 
 	static function dataReady() {
 		// Create new mesh object
-		var tri:TObj = {
+		var tri: TObj = {
 			name: "Triangle",
 			type: "mesh_object",
 			data_ref: "TriangleMesh",
@@ -141,7 +144,7 @@ class Main {
 		};
 		raw.objects.push(tri);
 
-		Scene.active.parseObject(raw.name, tri.name, null, function(o:Object) {
+		Scene.active.parseObject(raw.name, tri.name, null, function(o: Object) {
 			trace('Triangle ready');
 		});
 	}

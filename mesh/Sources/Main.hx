@@ -10,10 +10,13 @@ import iron.math.Vec4;
 
 class Main {
 
-	static var raw:TSceneFormat;
+	static var raw: TSceneFormat;
 
 	public static function main() {
-		kha.System.start({title: "Empty", width: 1280, height: 720}, function(window:kha.Window) {
+
+		ShaderData.shaderPath = ""; // Use arm_data_dir
+
+		kha.System.start({title: "Empty", width: 1280, height: 720}, function(window: kha.Window) {
 			App.init(ready);
 		});
 	}
@@ -22,7 +25,7 @@ class Main {
 		var path = new RenderPath();
 		path.commands = function() {
 			path.setTarget("");
-			path.clearTarget(0xff6495ED, 1.0);
+			path.clearTarget(0xff6495ed, 1.0);
 			path.drawMeshes("mesh");
 		};
 		RenderPath.setActive(path);
@@ -38,7 +41,7 @@ class Main {
 		};
 		Data.cachedSceneRaws.set(raw.name, raw);
 
-		var cd:TCameraData = {
+		var cd: TCameraData = {
 			name: "MyCamera",
 			near_plane: 0.1,
 			far_plane: 100.0,
@@ -46,7 +49,7 @@ class Main {
 		};
 		raw.camera_datas.push(cd);
 		
-		var sh:TShaderData = {
+		var sh: TShaderData = {
 			name: "MyShader",
 			contexts: [
 				{
@@ -71,7 +74,7 @@ class Main {
 		var col = new kha.arrays.Float32Array(3);
 		col[0] = 1.0; col[1] = 0.0; col[2] = 0.0;
 
-		var md:TMaterialData = {
+		var md: TMaterialData = {
 			name: "MyMaterial",
 			shader: "MyShader",
 			contexts: [
@@ -85,14 +88,14 @@ class Main {
 		};
 		raw.material_datas.push(md);
 
-		MaterialData.parse(raw.name, md.name, function(res:MaterialData) {
+		MaterialData.parse(raw.name, md.name, function(res: MaterialData) {
 			dataReady();
 		});
 	}
 
 	static function dataReady() {
 		// Camera object
-		var co:TObj = {
+		var co: TObj = {
 			name: "Camera",
 			type: "camera_object",
 			data_ref: "MyCamera",
@@ -101,7 +104,7 @@ class Main {
 		raw.objects.push(co);
 
 		// Mesh object
-		var o:TObj = {
+		var o: TObj = {
 			name: "Suzanne",
 			type: "mesh_object",
 			data_ref: "Suzanne.arm/Suzanne",
@@ -111,13 +114,13 @@ class Main {
 		raw.objects.push(o);
 
 		// Instantiate scene
-		Scene.create(raw, function(o:Object) {
+		Scene.create(raw, function(o: Object) {
 			trace('Monkey ready');
 			sceneReady();
 		});
 
 		// Instantiate single object
-		// Scene.active.parseObject(raw.name, o.name, null, function(o:Object) {
+		// Scene.active.parseObject(raw.name, o.name, null, function(o: Object) {
 		// 	trace('Monkey ready');
 		// });
 	}

@@ -10,10 +10,13 @@ import iron.math.Vec4;
 
 class Main {
 
-	static var raw:TSceneFormat;
+	static var raw: TSceneFormat;
 
 	public static function main() {
-		kha.System.start({title: "Empty", width: 1280, height: 720}, function(window:kha.Window) {
+
+		ShaderData.shaderPath = ""; // Use arm_data_dir
+
+		kha.System.start({title: "Empty", width: 1280, height: 720}, function(window: kha.Window) {
 			App.init(ready);
 		});
 	}
@@ -22,13 +25,13 @@ class Main {
 		var path = new RenderPath();
 		path.commands = function() {
 			path.setTarget("");
-			path.clearTarget(0xff6495ED, 1.0);
+			path.clearTarget(0xff6495ed, 1.0);
 			path.drawMeshes("mesh");
 		};
 		RenderPath.setActive(path);
 
 		// Create scene from "Scene.json" file
-		iron.Scene.setActive("Scene.json", function(object:iron.object.Object) {
+		iron.Scene.setActive("Scene.json", function(object: iron.object.Object) {
 			sceneReady();
 		});
 	}
