@@ -81,7 +81,7 @@ class Main {
 				{
 					name: "mesh",
 					bind_constants: [
-						{ name: "color", vec3: col }
+						{ name: "color", vec3Value: col }
 					]
 				}
 			]
